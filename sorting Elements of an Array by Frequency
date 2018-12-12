@@ -1,0 +1,50 @@
+#include <iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+typedef struct freq{
+    int num;
+    int count;
+}freq;
+bool compare(freq a, freq b){
+    if(a.count!=b.count)
+        return a.count>b.count;
+    else{
+        return b.num>a.num;
+    }
+}
+int main() {
+	//code
+	int T;
+	cin>>T;
+	for(int t=0;t<T;t++){
+	    int n;
+	    int arr1[61]={0};
+	    cin>>n;
+	    vector<freq> v;
+	    int arr[n];
+	    for(int i=0;i<n;i++){
+	        cin>>arr[i];
+	    }
+	    for(int i=0;i<n;i++){
+	        arr1[arr[i]]++;
+	    }
+	    for(int i=0;i<61;i++){
+	        if(arr1[i]!=0){
+	            freq fr;
+	            fr.num=i;
+	            fr.count=arr1[i];
+	            v.push_back(fr);
+	        }
+	    }
+	    sort(v.begin(),v.end(),compare);
+	    for(int i=0;i<v.size();i++){
+	        for(int j=0;j<v[i].count;j++)
+	            cout<<v[i].num<<" ";
+	    }
+	    cout<<"\n";
+	    
+	}
+	return 0;
+}
